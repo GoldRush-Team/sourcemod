@@ -7,7 +7,7 @@ if 'tf2' in SM.sdks:
   for cxx in builder.targets:
     if not cxx.target.arch in sdk['platforms'][cxx.target.platform]:
       continue
-    binary = SM.HL2Library(builder, cxx, 'game.tf2.ext.' + sdk['extension'], sdk)
+    binary = SM.HL2Library(builder, cxx, 'game.tf2gr.ext.' + sdk['extension'], sdk)
     SM.AddCDetour(binary)
     binary.sources += [
       'extension.cpp',

@@ -73,7 +73,7 @@ SH_DECL_HOOK3_void(IServerGameDLL, ServerActivate, SH_NOATTRIB, 0, edict_t *, in
 
 bool TF2Tools::SDK_OnLoad(char *error, size_t maxlength, bool late)
 {
-	if (strcmp(g_pSM->GetGameFolderName(), "tf") != 0)
+	if (strcmp(g_pSM->GetGameFolderName(), "tf_goldrush") != 0)
 	{
 		UTIL_Format(error, maxlength, "Cannot Load TF2 Extension on mods other than TF2");
 		return false;
@@ -99,11 +99,11 @@ bool TF2Tools::SDK_OnLoad(char *error, size_t maxlength, bool late)
 	sharesys->AddDependency(myself, "sdktools.ext", false, true);
 
 	char conf_error[255] = "";
-	if (!gameconfs->LoadGameConfigFile("sm-tf2.games", &g_pGameConf, conf_error, sizeof(conf_error)))
+	if (!gameconfs->LoadGameConfigFile("tf_goldrush.games", &g_pGameConf, conf_error, sizeof(conf_error)))
 	{
 		if (conf_error[0])
 		{
-			UTIL_Format(error, maxlength, "Could not read sm-tf2.games.txt: %s", conf_error);
+			UTIL_Format(error, maxlength, "Could not read tf_goldrush.games.txt: %s", conf_error);
 		}
 		return false;
 	}

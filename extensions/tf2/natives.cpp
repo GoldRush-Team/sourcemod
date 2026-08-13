@@ -335,6 +335,7 @@ cell_t TF2_StunPlayer(IPluginContext *pContext, const cell_t *params)
 
 cell_t TF2_SetPowerplayEnabled(IPluginContext *pContext, const cell_t *params)
 {
+	/* Powerplay doesn't exist in TF2 SDK mods
 	static ICallWrapper *pWrapper = NULL;
 
 	// CTFPlayer::SetPowerPlayEnabled(bool)
@@ -358,6 +359,8 @@ cell_t TF2_SetPowerplayEnabled(IPluginContext *pContext, const cell_t *params)
 
 	pWrapper->Execute(vstk, nullptr);
 	return 1;
+	*/
+	return pContext->ThrowNativeError("TF2_SetPowerplayEnabled is no longer available");
 }
 
 cell_t TF2_Respawn(IPluginContext *pContext, const cell_t *params)
@@ -441,6 +444,7 @@ cell_t TF2_GetClass(IPluginContext *pContext, const cell_t *params)
 // native TF2_IsPlayerInDuel(client)
 cell_t TF2_IsPlayerInDuel(IPluginContext *pContext, const cell_t *params)
 {
+	/* Duels don't exist in TF2GR
 	static ICallWrapper *pWrapper = NULL;
 
 	// DuelMiniGame_IsPlayerInDuel(CTFPlayer *)
@@ -469,7 +473,8 @@ cell_t TF2_IsPlayerInDuel(IPluginContext *pContext, const cell_t *params)
 	bool retValue;
 	pWrapper->Execute(vstk, &retValue);
 
-	return (retValue) ? 1 : 0;
+	return (retValue) ? 1 : 0;*/
+	return pContext->ThrowNativeError("TF2_IsPlayerInDuel is no longer available");
 }
 
 // native bool:TF2_IsHolidayActive(TFHoliday:holiday);
