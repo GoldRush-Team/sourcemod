@@ -73,13 +73,13 @@ void PlayerConditionsMgr::ProcessCondChange(CondChangeData_t *pCondData)
 			if (addedConds & (1 << i))
 			{
 				g_addCondForward->PushCell(client);
-				g_addCondForward->PushCell(i + m_CondOffset[var]);
+				g_addCondForward->PushCell(TranslateCondIndexToLive(i + m_CondOffset[var]));
 				g_addCondForward->Execute(NULL);
 			}
 			else if (removedConds & (1 << i))
 			{
 				g_removeCondForward->PushCell(client);
-				g_removeCondForward->PushCell(i + m_CondOffset[var]);
+				g_removeCondForward->PushCell(TranslateCondIndexToLive(i + m_CondOffset[var]));
 				g_removeCondForward->Execute(NULL);
 			}
 		}
@@ -125,9 +125,9 @@ PlayerConditionsMgr::PlayerConditionsMgr()
 	m_CondOffset[m_nPlayerCond] = 0;
 	m_CondOffset[_condition_bits] = 0;
 	m_CondOffset[m_nPlayerCondEx] = 32;
-	m_CondOffset[m_nPlayerCondEx2] = 64;
-	m_CondOffset[m_nPlayerCondEx3] = 96;
-	m_CondOffset[m_nPlayerCondEx4] = 128;
+	//m_CondOffset[m_nPlayerCondEx2] = 64;
+	//m_CondOffset[m_nPlayerCondEx3] = 96;
+	//m_CondOffset[m_nPlayerCondEx4] = 128;
 }
 
 bool PlayerConditionsMgr::Init()
@@ -136,10 +136,10 @@ bool PlayerConditionsMgr::Init()
 
 	bool bFoundProps = SetupProp<m_nPlayerCond>("m_nPlayerCond")
 		&& SetupProp<_condition_bits>("_condition_bits")
-		&& SetupProp<m_nPlayerCondEx>("m_nPlayerCondEx")
-		&& SetupProp<m_nPlayerCondEx2>("m_nPlayerCondEx2")
-		&& SetupProp<m_nPlayerCondEx3>("m_nPlayerCondEx3")
-		&& SetupProp<m_nPlayerCondEx4>("m_nPlayerCondEx4");
+		&& SetupProp<m_nPlayerCondEx>("m_nPlayerCondEx");
+		//&& SetupProp<m_nPlayerCondEx2>("m_nPlayerCondEx2")
+		//&& SetupProp<m_nPlayerCondEx3>("m_nPlayerCondEx3")
+		//&& SetupProp<m_nPlayerCondEx4>("m_nPlayerCondEx4");
 
 	if (!bFoundProps)
 		return false;

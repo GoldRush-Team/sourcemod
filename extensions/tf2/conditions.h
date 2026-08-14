@@ -50,9 +50,9 @@ public:
 		m_nPlayerCond,
 		_condition_bits,
 		m_nPlayerCondEx,
-		m_nPlayerCondEx2,
-		m_nPlayerCondEx3,
-		m_nPlayerCondEx4,
+		//m_nPlayerCondEx2,
+		//m_nPlayerCondEx3,
+		//m_nPlayerCondEx4,
 
 		CondVar_Count
 	};

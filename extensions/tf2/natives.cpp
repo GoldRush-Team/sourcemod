@@ -251,8 +251,15 @@ cell_t TF2_AddCondition(IPluginContext *pContext, const cell_t *params)
 		return pContext->ThrowNativeError("Inflictor index %d is not valid", params[4]);
 	}
 
+	int iCond = TranslateCondIndexToGR(params[2]);
+	// conn: prevent game crash, we no longer have a guarantee every cond index is valid!
+	if (iCond == TF_COND_INVALID)
+	{
+		return pContext->ThrowNativeError("Condition index %i is not valid", params[2]);
+	}
+	
 	void *obj = (void *)((uint8_t *)pEntity + playerSharedOffset->actual_offset);
-	ArgBuffer<void*, int, float, CBaseEntity*> vstk(obj, params[2], sp_ctof(params[3]), pInflictor);
+	ArgBuffer<void*, int, float, CBaseEntity*> vstk(obj, iCond, sp_ctof(params[3]), pInflictor);
 
 	pWrapper->Execute(vstk, nullptr);
 	return 1;
@@ -283,7 +290,7 @@ cell_t TF2_RemoveCondition(IPluginContext *pContext, const cell_t *params)
 	}
 
 	void *obj = (void *)((uint8_t *)pEntity + playerSharedOffset->actual_offset);
-	ArgBuffer<void*, int, bool> vstk(obj, params[2], true);
+	ArgBuffer<void*, int, bool> vstk(obj, TranslateCondIndexToGR(params[2]), true);
 
 	pWrapper->Execute(vstk, nullptr);
 	return 1;

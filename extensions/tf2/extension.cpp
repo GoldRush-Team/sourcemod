@@ -492,7 +492,29 @@ TFClassType ClassnameToType(const char *classname)
 	return *value;
 }
 
+int TranslateCondIndexToGR(int iCond)
+{
+	// conn: this is a similar hack to the one we use for trigger_add_tf_player_condition in gold rush,
+	// translating the cond indexes used in live tf2 to the ones used by our mod
+	return (iCond >= 0 && iCond < SM_ARRAYSIZE(g_aConditionMap)) ? g_aConditionMap[iCond] : TF_COND_INVALID;
+}
 
+int TranslateCondIndexToLive(int iCond)
+{
+	// like the other hack, but for the OnCondition forwards (i.e. the other way around)... this one is worse
+	if (iCond > TF_COND_INVALID)
+	{
+		for (int i = 0; i < SM_ARRAYSIZE(g_aConditionMap); i++)
+		{
+			if (g_aConditionMap[i] == iCond)
+			{
+				return i;
+			}
+		}
+	}
+	
+	return TF_COND_INVALID;
+}
 
 /**
  * A picture of a blue crab given to me as a gift and stored here for safe keeping
