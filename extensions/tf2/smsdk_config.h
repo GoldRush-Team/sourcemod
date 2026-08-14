@@ -38,7 +38,7 @@
  */
 
 /* Basic information exposed publicly */
-#define SMEXT_CONF_NAME			"TF2 Tools (GR)"
+#define SMEXT_CONF_NAME			"TF2 Tools"
 #define SMEXT_CONF_DESCRIPTION	"TF2 extended functionality"
 #define SMEXT_CONF_VERSION		""
 #define SMEXT_CONF_AUTHOR		"AlliedModders LLC, GR port by conneath"
